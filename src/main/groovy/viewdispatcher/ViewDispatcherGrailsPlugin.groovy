@@ -10,7 +10,7 @@ import grails.plugins.*
 class ViewDispatcherGrailsPlugin extends Plugin {
 
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "3.3.11 > *"
+    def grailsVersion = "3.3.7 > *"
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
         "grails-app/views/error.gsp"
