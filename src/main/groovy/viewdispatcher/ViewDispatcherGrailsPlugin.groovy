@@ -31,38 +31,37 @@ Brief summary/description of the plugin.
     // Extra (optional) plugin metadata
 
     // License: one of 'APACHE', 'GPL2', 'GPL3'
-//    def license = "APACHE"
+    //def license = "APACHE"
 
     // Details of company behind the plugin (if there is one)
-//    def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
+    //def organization = [ name: "My Company", url: "http://www.my-company.com/" ]
 
     // Any additional developers beyond the author specified above.
-//    def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
+    //def developers = [ [ name: "Joe Bloggs", email: "joe@bloggs.net" ]]
 
     // Location of the plugin's issue tracker.
-//    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
+    //def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPMYPLUGIN" ]
 
     // Online location of the plugin's browseable source code.
-//    def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
+    //def scm = [ url: "http://svn.codehaus.org/grails-plugins/" ]
 
     def loadAfter = ['controllers']
 
     Closure doWithSpring() { {->
-            // TODO Implement runtime spring config (optional)
-    def application = grailsApplication
-    def config = application.config
+       //register customer servlet dispatcher
+       def application = grailsApplication
+       def config = application.config
 
-    boolean isTomcat = ClassUtils.isPresent("org.apache.catalina.startup.Tomcat", application.classLoader)
-    String grailsServletPath = config.getProperty(Settings.WEB_SERVLET_PATH, isTomcat ? Settings.DEFAULT_TOMCAT_SERVLET_PATH : Settings.DEFAULT_WEB_SERVLET_PATH)
+       boolean isTomcat = ClassUtils.isPresent("org.apache.catalina.startup.Tomcat", application.classLoader)
+       String grailsServletPath = config.getProperty(Settings.WEB_SERVLET_PATH, isTomcat ? Settings.DEFAULT_TOMCAT_SERVLET_PATH : Settings.DEFAULT_WEB_SERVLET_PATH)
 
-    // add the dispatcher servlet
-    dispatcherServlet(ViewDispatcherServlet)
-    dispatcherServletRegistration(ServletRegistrationBean, ref("dispatcherServlet"), grailsServletPath) {
-        loadOnStartup = 2
-        asyncSupported = true
-        multipartConfig = multipartConfigElement
-    }
-        }
+       // add the dispatcher servlet
+       dispatcherServlet(ViewDispatcherServlet)
+       dispatcherServletRegistration(ServletRegistrationBean, ref("dispatcherServlet"), grailsServletPath) {
+           loadOnStartup = 2
+           asyncSupported = true
+           multipartConfig = multipartConfigElement
+       } }
     }
 
     void doWithDynamicMethods() {
